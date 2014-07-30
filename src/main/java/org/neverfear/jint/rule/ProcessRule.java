@@ -163,6 +163,9 @@ public class ProcessRule
 	}
 
 	public Process get() {
+		if (this.process == null) {
+			throw new IllegalStateException("Process not set");
+		}
 		return this.process;
 	}
 
