@@ -27,6 +27,8 @@ import org.junit.runners.model.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Supplier;
+
 /**
  * The {@link ProcessRule} starts a basic process and stops it after the test
  * run.
@@ -35,7 +37,7 @@ import org.slf4j.LoggerFactory;
  * 
  */
 public class ProcessRule
-	implements TestRule {
+	implements TestRule, Supplier<Process> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProcessRule.class);
 
@@ -162,6 +164,7 @@ public class ProcessRule
 		}
 	}
 
+	@Override
 	public Process get() {
 		if (this.process == null) {
 			throw new IllegalStateException("Process not set");

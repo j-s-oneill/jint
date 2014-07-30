@@ -125,5 +125,24 @@
 			<artifactId>system-rules</artifactId>
 			<version>1.6.0</version>
 		</dependency>
+
+		<!-- Utilities libraries -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-testlib</artifactId>
+			<version>${guava.version}</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 </project>
