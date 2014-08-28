@@ -25,6 +25,8 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
+import org.neverfear.jint.util.FileUtil;
+
 import com.google.common.annotations.VisibleForTesting;
 
 /**
@@ -41,6 +43,7 @@ public final class SharedInteger {
 
 	@VisibleForTesting
 	SharedInteger(final Clock clock, final File parentDirectory) {
+		FileUtil.ensureDirectoryExists(parentDirectory);
 		this.parentDirectory = parentDirectory;
 		this.clock = clock;
 		this.lockFile = new File(parentDirectory,

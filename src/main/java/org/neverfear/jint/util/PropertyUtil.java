@@ -16,8 +16,11 @@
 package org.neverfear.jint.util;
 
 import static java.io.File.pathSeparator;
+import static org.neverfear.jint.util.RuntimeUtil.classPath;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.Map;
 
 import com.google.common.base.Joiner;
 
@@ -25,6 +28,12 @@ public final class PropertyUtil {
 
 	public static final Joiner CLASSPATH_JOINER = Joiner.on(pathSeparator);
 	public static final Joiner LIBRARYPATH_JOINER = Joiner.on(pathSeparator);
+	private static final Map<String, String> ENVIRONMENT = Collections.unmodifiableMap(System.getenv());
+
+	/**
+	 * User's current working directory
+	 */
+	private static final String WORKING_DIRECTORY_PROPERTY = "user.dir";
 
 	/**
 	 * Default temporary file path
@@ -33,6 +42,21 @@ public final class PropertyUtil {
 
 	private PropertyUtil() {
 		throw new AssertionError();
+	}
+
+	public static String classPathString() {
+		return CLASSPATH_JOINER
+				.join(classPath());
+	}
+
+	public static File currentWorkingDirectory() {
+		final String workingDirectory = System.getProperty(WORKING_DIRECTORY_PROPERTY);
+		assert workingDirectory != null;
+		return new File(workingDirectory);
+	}
+
+	public static Map<String, String> currentEnvironment() {
+		return ENVIRONMENT;
 	}
 
 	public static File tempDirectory() {

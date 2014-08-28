@@ -20,6 +20,7 @@ import java.io.IOException;
 
 public final class JintUtil {
 
+	public static final String PROPERTY_DELETE_CONSOLE_FILES_ON_EXIT = "jint.console.clean";
 	public static final String PROPERTY_TEMP_DIRECTORY = "jint.tempdir";
 
 	private static final String DEFAULT_TEMP_DIRECTORY_NAME = "jint";
@@ -67,6 +68,16 @@ public final class JintUtil {
 			jintTempDirectory.mkdir();
 		}
 		return jintTempDirectory;
+	}
+
+	/**
+	 * false by default. May be specified using
+	 * {@link #PROPERTY_DELETE_CONSOLE_FILES_ON_EXIT}.
+	 * 
+	 * @return
+	 */
+	public static boolean shouldDeleteConsoleFilesOnExit() {
+		return Boolean.getBoolean(PROPERTY_DELETE_CONSOLE_FILES_ON_EXIT);
 	}
 
 }
